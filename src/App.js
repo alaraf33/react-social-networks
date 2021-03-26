@@ -1,9 +1,9 @@
 import React from 'react';
 
 import './App.css';
-import Header from "./Header";
-import Navbar from "./Navbar";
-import Profile from "./Profile";
+import Header from "./componets/Header/Header";
+import Navbar from "./componets/Navbar/Navbar";
+import Profile from "./componets/Profile/Profile";
 
 
 
