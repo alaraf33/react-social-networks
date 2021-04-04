@@ -12,14 +12,12 @@ const MyPosts = () => {
                 <button>Add post</button>
                 </div>
                 <div className={s.posts}>
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
-
+                    <Post massage="Hi, how are you? " likeCount='23' smsCa=' React Kabzda'/>
+                    <Post massage="Its my first post "likeCount='0'/>
+                    <Post massage="Good night!"/>
+                    <Post massage="Today one Aprille day jokes!"/>
                 </div>
+
             </div>
         </div>
     );
