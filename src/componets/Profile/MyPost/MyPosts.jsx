@@ -3,26 +3,30 @@ import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 
 const MyPosts = (props) => {
+
+    let postData = [
+        {id: 1, massage: 'Hi, how are you?', likeCount: 12},
+        {id: 2, massage: 'Its my first post', likeCount: 11}
+    ]
+
     return (
 
-            <div className={s.postBlock}>
-               <h3>My Post</h3>
+        <div className={s.postBlock}>
+            <h3>My Post</h3>
+            <div>
                 <div>
-                    <div>
-                        <textarea></textarea>
-                    </div>
-                    <div>
-                        <button>Add post</button>
-                    </div>
+                    <textarea></textarea>
                 </div>
-                <div className={s.posts}>
-                    <Post massage="Hi, how are you? " likeCount='23' smsCa=' React Kabzda'/>
-                    <Post massage="Its my first post " likeCount='0'/>
-                    <Post massage="Good night!"/>
-                    <Post massage="Today one Aprille day jokes!"/>
+                <div>
+                    <button>Add post</button>
                 </div>
-
             </div>
+            <div className={s.posts}>
+                <Post massage={postData[0].massage} likeCount={postData[0].likeCount}/>
+                <Post massage={postData[1].massage} likeCount={postData[1].likeCount}/>
+            </div>
+
+        </div>
 
     );
 };
