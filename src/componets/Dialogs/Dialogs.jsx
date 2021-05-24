@@ -4,11 +4,12 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 
 
+
 const Dialogs = (props) => {
 
-    let dialogsElement = props.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
+    let dialogsElement = props.state.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
 
-    let messagesElements = props.massages.map(m => <Message message={m.massage}/>);
+    let messagesElements = props.state.massages.map(m => <Message message={m.massage}/>);
 
     return (
         <div className={s.dialogs}>
