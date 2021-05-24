@@ -12,18 +12,21 @@ import s from "./componets/Dialogs/Dialogs.module.css";
 import {BrowserRouter, Route} from "react-router-dom";
 
 
-const App = () => {
+const App = (props) => {
+
+
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar/>
                 <div class='app-wrapper-content'>
-                    <Route path='/profile' component={Profile}/>
-                    <Route path='/dialogs' component={Dialogs}/>
-                    <Route path='/news' component={News}/>
-                    <Route path='/music' component={Music} />
-                    <Route path='/setings' component={Setings} />
+                    <Route path='/profile' render ={ () => <Profile posts={props.posts}/> } />
+                    <Route path='/dialogs' render ={ () => <Dialogs dialogs={props.dialogs} massages={props.massages}/>} />
+                    <Route path='/news' render ={() => <News />} />
+                    <Route path='/music' render ={ () => <Music /> } />
+                    <Route path='/setings' render ={ () => <Setings />} />
+
                 </div>
 
             </div>
