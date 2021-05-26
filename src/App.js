@@ -10,18 +10,18 @@ import Music from "./componets/Music/Music";
 import Setings from "./componets/Setings/Setings";
 import s from "./componets/Dialogs/Dialogs.module.css";
 import {BrowserRouter, Route} from "react-router-dom";
+import {addPost} from "./redax/state";
 
 
 const App = (props) => {
 
-
     return (
-        <BrowserRouter>
+
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar/>
 
-                <div class='app-wrapper-content'>
+                <div className='app-wrapper-content'>
 
                     <Route path='/dialogs'
                            render ={ () => <Dialogs
@@ -29,7 +29,9 @@ const App = (props) => {
 
                     <Route path='/profile'
                                 render ={ () => <Profile
-                                state={props.state.profilePage} /> } />
+                                    profilePage={props.state.profilePage} addPost = {props.addPost}
+                                    updateNewPostText={props.updateNewPostText}
+                                /> } />
 
 
 
@@ -40,7 +42,6 @@ const App = (props) => {
                 </div>
 
             </div>
-        </BrowserRouter>
     );
 }
 
