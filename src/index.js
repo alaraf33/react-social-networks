@@ -1,5 +1,5 @@
 import reportWebVitals from './reportWebVitals';
-import store from "./redax/state";
+import store from "./redax/redux_store";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -9,6 +9,7 @@ import {BrowserRouter} from "react-router-dom";
 
 
 let rerenderEntireTree = (state) => {
+    debugger;
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
@@ -23,4 +24,7 @@ let rerenderEntireTree = (state) => {
 
 //reportWebVitals();
 
-store.subscribe(rerenderEntireTree);
+store.subscribe(() => {
+    let state = store.getState();
+    rerenderEntireTree(state);
+});

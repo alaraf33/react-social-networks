@@ -8,13 +8,13 @@ import Dialogs from "./componets/Dialogs/Dialogs";
 import News from "./componets/News/News";
 import Music from "./componets/Music/Music";
 import Setings from "./componets/Setings/Setings";
-import s from "./componets/Dialogs/Dialogs.module.css";
+//import s from "./componets/Dialogs/Dialogs.module.css";
 import {BrowserRouter, Route} from "react-router-dom";
-import {addPost} from "./redax/state";
+//import {addPost} from "./redax/state";
 
 
 const App = (props) => {
-
+    debugger;
     return (
 
             <div className='app-wrapper'>
