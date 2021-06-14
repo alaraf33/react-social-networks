@@ -10,11 +10,11 @@ import Music from "./componets/Music/Music";
 import Setings from "./componets/Setings/Setings";
 //import s from "./componets/Dialogs/Dialogs.module.css";
 import {BrowserRouter, Route} from "react-router-dom";
+import DialogsContainer from "./componets/Dialogs/DialogsContainer";
 //import {addPost} from "./redax/state";
 
 
 const App = (props) => {
-    debugger;
     return (
 
             <div className='app-wrapper'>
@@ -24,12 +24,10 @@ const App = (props) => {
                 <div className='app-wrapper-content'>
 
                     <Route path='/dialogs'
-                           render ={ () => <Dialogs store={props.store} /> }/>
+                           render ={ () => <DialogsContainer store={props.store} /> }/>
 
                     <Route path='/profile'
-                                render ={ () => <Profile
-                                    profilePage={props.state.profilePage}
-                                    dispatch = {props.dispatch} /> } />
+                                render ={ () => <Profile store={props.store} /> } />
 
                     <Route path='/news' render ={() => <News />} />
                     <Route path='/music' render ={ () => <Music /> } />
