@@ -4,17 +4,17 @@ import './App.css';
 import Header from "./componets/Header/Header";
 import Navbar from "./componets/Navbar/Navbar";
 import Profile from "./componets/Profile/Profile";
-import Dialogs from "./componets/Dialogs/Dialogs";
 import News from "./componets/News/News";
 import Music from "./componets/Music/Music";
 import Setings from "./componets/Setings/Setings";
-//import s from "./componets/Dialogs/Dialogs.module.css";
 import {BrowserRouter, Route} from "react-router-dom";
 import DialogsContainer from "./componets/Dialogs/DialogsContainer";
+import UsersContainer from "./componets/Users/UsersContainer";
+
 //import {addPost} from "./redax/state";
 
 
-const App = (props) => {
+const App = () => {
     return (
 
             <div className='app-wrapper'>
@@ -24,10 +24,13 @@ const App = (props) => {
                 <div className='app-wrapper-content'>
 
                     <Route path='/dialogs'
-                           render ={ () => <DialogsContainer store={props.store} /> }/>
+                           render ={ () => <DialogsContainer /> }/>
 
                     <Route path='/profile'
-                                render ={ () => <Profile store={props.store} /> } />
+                                render ={ () => <Profile /> } />
+
+                    <Route path='/users'
+                           render ={ () => <UsersContainer /> } />
 
                     <Route path='/news' render ={() => <News />} />
                     <Route path='/music' render ={ () => <Music /> } />

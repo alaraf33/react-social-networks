@@ -2,17 +2,15 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redax/dialogs_reducer";
-
 
 
 const Dialogs = (props) => {
 
     let state = props.dialogsPage;
 
-    let dialogsElement = state.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
+    let dialogsElement = state.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id}/>);
 
-    let messagesElements = state.massages.map(m => <Message message={m.massage}/>);
+    let messagesElements = state.massages.map(m => <Message message={m.massage} key={m.id} />);
     let newMessageBody = state.newMessageBody;
 
     let onSendMessageClick = () => {

@@ -11,23 +11,36 @@ let initialState = {
     newPostText: 'it-kamasutra' // write text
 }
 
-const profileReducer = (state = initialState, action) =>{
+const profileReducer = (state = initialState, action) => {
 
-    if (action.type === ADD_POST) {
-        let newPost = {
-            id: 5,
-            massage: state.newPostText,
-            likeCount: 0
-        };
-        state.posts.push(newPost);
-        state.newPostText = '';
-    }
-    else if(action.type === UPDATE_NEW_POST_TEXT){
-        state.newPostText = action.newText;
-    }
+    switch (action.type) {
+        case ADD_POST: {
+            let newPost = {
+                id: 5,
+                massage: state.newPostText,
+                likeCount: 0
+            };
+                return {
+                ...state,
+                posts:[...state.posts, newPost],
+                newPostText: ''
+            };
 
-    return state;
+        }
+
+        case UPDATE_NEW_POST_TEXT: {
+
+            return {
+                ...state,
+                newPostText: action.newText
+            };
+
+        }
+        default:
+            return state;
+        }
 }
+
 
 export const addPostActionCreator = () => ({type: ADD_POST})
 
