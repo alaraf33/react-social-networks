@@ -1,68 +1,59 @@
-import React from 'react';
-import styles from './users.module.css';
+import React from "react";
+import styles from "./users.module.css";
+import userPhoto from "../../assets/images/user.png.crdownload";
+
 
 let Users = (props) => {
 
-    if (props.users.length === 0) {
-        props.setUsers([
 
-            {
-                id: 1, photoUrl: 'https://kvmarvel.ru/wp-content/uploads/2018/03/captain_america_team.png',
-                followed: false,
-                fullName: 'Sergei',
-                status: 'I am better',
-                location: {city: 'Minsk', country: 'Belarus'}
-            },
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
-            {
-                id: 2, photoUrl: 'https://kvmarvel.ru/wp-content/uploads/2018/03/captain_america_team.png',
-                followed: true,
-                fullName: 'Dmitriy',
-                status: 'I am better too',
-                location: {city: 'Moscow', country: 'Russia'}
-            },
-
-            {
-                id: 3, photoUrl: 'https://kvmarvel.ru/wp-content/uploads/2018/03/captain_america_team.png',
-                followed: false,
-                fullName: 'Irina',
-                status: 'I am better too',
-                location: {city: 'KIev', country: 'Ukraine'}
-            }
-
-        ]
-      )
+    let pages = [];
+    for (let i = 1; i < pagesCount; i++){
+        pages.push(i);
     }
 
-    return(
+    return <div>
         <div>
-            {
-                props.users.map(u => <div key={u.id}>
+
+            {pages.map(p => {
+                return <span className={props.currentPage === p && styles.selectedPage}
+                             onClick={(e) => {
+                                 props.onPageChanged(p);
+                             }}>{p}</span>
+            })}
+        </div>
+        {
+            props.users.map(u => <div key={u.id}>
                     <span>
                         <div>
-                            <img src={u.photoUrl} className={styles.userPhoto}/>
+                            <img src={u.photos.small != null ? u.photos.small : userPhoto}
+                                 className={styles.userPhoto}/>
                         </div>
                         <div>
                             {u.followed
-                                ? <button onClick={() => {props.unfollow(u.id)} } >Unfollow</button>
-                                : <button onClick={() => {props.follow(u.id)} }>Follow</button> }
+                                ? <button onClick={() => {
+                                    props.unfollow(u.id)
+                                }}>Unfollow</button>
+                                : <button onClick={() => {
+                                    props.follow(u.id)
+                                }}>Follow</button>}
 
                         </div>
                     </span>
-                    <span>
+                <span>
                         <span>
-                            <div>{u.fullName}</div>
+                            <div>{u.name}</div>
                             <div>{u.status}</div>
                         </span>
                         <span>
-                            <div>{u.location.country}</div>
-                            <div>{u.location.city}</div>
+                            <div>{"u.location.country"}</div>
+                            <div>{"u.location.city"}</div>
                         </span>
                     </span>
-                </div>)
-            }
-        </div>
-    )
+            </div>)
+        }
+    </div>
 }
 
 export default Users;
