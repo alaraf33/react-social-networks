@@ -3,13 +3,13 @@ import React from 'react';
 import './App.css';
 import Header from "./componets/Header/Header";
 import Navbar from "./componets/Navbar/Navbar";
-import Profile from "./componets/Profile/Profile";
 import News from "./componets/News/News";
 import Music from "./componets/Music/Music";
 import Setings from "./componets/Setings/Setings";
 import {BrowserRouter, Route} from "react-router-dom";
 import DialogsContainer from "./componets/Dialogs/DialogsContainer";
 import UsersContainer from "./componets/Users/UsersContainer";
+import ProfileContainer from "./componets/Profile/ProfileContainer";
 
 //import {addPost} from "./redax/state";
 
@@ -26,8 +26,8 @@ const App = () => {
                     <Route path='/dialogs'
                            render ={ () => <DialogsContainer /> }/>
 
-                    <Route path='/profile'
-                                render ={ () => <Profile /> } />
+                    <Route path='/profile/:userId?'
+                                render ={ () => <ProfileContainer /> } />
 
                     <Route path='/users'
                            render ={ () => <UsersContainer /> } />
