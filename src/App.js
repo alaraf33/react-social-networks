@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './App.css';
-import Header from "./componets/Header/Header";
+import HeaderContainer from "./componets/Header/HeaderContainer";
 import Navbar from "./componets/Navbar/Navbar";
 import News from "./componets/News/News";
 import Music from "./componets/Music/Music";
@@ -11,6 +11,7 @@ import DialogsContainer from "./componets/Dialogs/DialogsContainer";
 import UsersContainer from "./componets/Users/UsersContainer";
 import ProfileContainer from "./componets/Profile/ProfileContainer";
 
+
 //import {addPost} from "./redax/state";
 
 
@@ -18,8 +19,8 @@ const App = () => {
     return (
 
             <div className='app-wrapper'>
-                <Header/>
-                <Navbar/>
+                <HeaderContainer />
+                <Navbar />
 
                 <div className='app-wrapper-content'>
 
