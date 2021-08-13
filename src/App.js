@@ -10,9 +10,9 @@ import {BrowserRouter, Route} from "react-router-dom";
 import DialogsContainer from "./componets/Dialogs/DialogsContainer";
 import UsersContainer from "./componets/Users/UsersContainer";
 import ProfileContainer from "./componets/Profile/ProfileContainer";
+import LoginPage from "./Login/Login";
 
 
-//import {addPost} from "./redax/state";
 
 
 const App = () => {
@@ -32,6 +32,9 @@ const App = () => {
 
                     <Route path='/users'
                            render ={ () => <UsersContainer /> } />
+
+                     <Route path='/login'
+                           render ={ () => <LoginPage /> } />
 
                     <Route path='/news' render ={() => <News />} />
                     <Route path='/music' render ={ () => <Music /> } />
