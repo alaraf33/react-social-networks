@@ -8,7 +8,8 @@ const Header = (props) => {
                     src='http://3.bp.blogspot.com/-iKHwpJF-EHo/UE17RbszugI/AAAAAAAAAN4/THNcHg8V2Zc/s1600/twitter-bird-light-bgs.png'/>
 
                     <div className={s.loginBlock}>
-                        { props.isAuth ?  props.login
+                        { props.isAuth
+                            ? <div> {props.login} - <button onClick={props.logout}>Log out</button></div>
                         : <NavLink to={'/login'}>Login</NavLink> }
                     </div>
             </header>)

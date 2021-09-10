@@ -60,7 +60,7 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 followingInProgress: action.isFetching
                     ? [...state.followingInProgress, action.userId]
-                    : state.followingInProgress.filter(id => id != action.userId)
+                    : state.followingInProgress.filter(id => id !== action.userId)
             }
         }
 
@@ -89,13 +89,13 @@ export const toggleFollowingProgress = (isFetching, userId) => ({
 })
 
 
-export const getUsers = (currentPage, pageSize) => {
+export const getUsers = (page, pageSize) => {
 
     return (dispatch) => {
-
         dispatch(toggleIsFetching(true));
+        dispatch(setCurrentPage(page));
 
-        userAPI.getUsers(currentPage, pageSize).then(data => {
+        userAPI.getUsers(page, pageSize).then(data => {
 
             dispatch(toggleIsFetching(false));
             dispatch(setUsers(data.items));
