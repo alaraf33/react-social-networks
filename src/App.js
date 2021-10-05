@@ -11,10 +11,11 @@ import DialogsContainer from "./componets/Dialogs/DialogsContainer";
 import UsersContainer from "./componets/Users/UsersContainer";
 import ProfileContainer from "./componets/Profile/ProfileContainer";
 import LoginPage from "./Login/Login";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./redax/app_reducer";
 import Preloader from "./componets/common/Preloader";
+import store from "./redax/redux_store";
 
 
 
@@ -64,6 +65,16 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default compose(
+let AppContainer =  compose(
     withRouter,
     connect(mapStateToProps, {initializeApp}))(App);
+
+const SamuraiJSApp = (props) =>{
+    return <BrowserRouter>
+        <Provider store={store}>
+            <AppContainer />
+        </Provider>
+    </BrowserRouter>
+}
+
+export default SamuraiJSApp;
