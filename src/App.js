@@ -1,5 +1,5 @@
 //import React from 'react';
-import React, {Component} from 'react';
+import React, {Component, Suspense} from 'react';
 import './App.css';
 import HeaderContainer from "./componets/Header/HeaderContainer";
 import Navbar from "./componets/Navbar/Navbar";
@@ -7,16 +7,19 @@ import News from "./componets/News/News";
 import Music from "./componets/Music/Music";
 import Setings from "./componets/Setings/Setings";
 import {BrowserRouter, Route, withRouter} from "react-router-dom";
-import DialogsContainer from "./componets/Dialogs/DialogsContainer";
 import UsersContainer from "./componets/Users/UsersContainer";
-import ProfileContainer from "./componets/Profile/ProfileContainer";
 import LoginPage from "./Login/Login";
 import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./redax/app_reducer";
 import Preloader from "./componets/common/Preloader";
 import store from "./redax/redux_store";
+import {withSuspense} from "./hoc/withSuspense";
 
+//import ProfileContainer from "./componets/Profile/ProfileContainer";
+//import DialogsContainer from "./componets/Dialogs/DialogsContainer";
+const DialogsContainer = React.lazy(() => import('./componets/Dialogs/DialogsContainer'));
+const ProfileContainer = React.lazy(() => import('./componets/Profile/ProfileContainer'));
 
 
 class App extends React.Component {
@@ -38,10 +41,10 @@ class App extends React.Component {
                 <div className='app-wrapper-content'>
 
                     <Route path='/dialogs'
-                           render={() => <DialogsContainer/>}/>
+                           render={withSuspense(DialogsContainer)} />
 
                     <Route path='/profile/:userId?'
-                           render={() => <ProfileContainer/>}/>
+                           render={withSuspense(ProfileContainer)} />
 
                     <Route path='/users'
                            render={() => <UsersContainer/>}/>
