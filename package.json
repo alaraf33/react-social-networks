@@ -2,6 +2,7 @@
   "name": "react-kabzda-1",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.com/alaraf33/demo-social-network.git",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
@@ -23,7 +24,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -44,6 +47,8 @@
     ]
   },
   "devDependencies": {
+    "add": "^2.0.6",
+    "gh-pages": "^3.2.3",
     "react-test-renderer": "^17.0.1"
   }
 }
