@@ -31,8 +31,8 @@ const LoginReduxForm = reduxForm({ form: 'login'})(LoginForm)
 
 const Login = (props) => {
 
-    const onSubmit = (formDate) =>{
-        props.login(formDate.email, formDate.password, formDate.rememberMe);
+    const onSubmit = (formData) =>{
+        props.login(formData.email, formData.password, formData.rememberMe);
     }
 
     if(props.isAuth){

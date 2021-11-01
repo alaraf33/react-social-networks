@@ -1,4 +1,5 @@
-import {authAPI, profileAPI, userAPI} from "../api/api";
+import {profileAPI, userAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -11,7 +12,7 @@ let initialState = {
     posts: [
         {id: 1, massage: 'Hi, how are you?', likeCount: 12},
         {id: 2, massage: 'Its my first post', likeCount: 11},
-        {id: 3, massage: 'you?', likeCount: 12},
+        {id: 3, massage: 'you?', likeCount: 11},
         {id: 4, massage: 'first post', likeCount: 11}
     ],
 
@@ -64,7 +65,7 @@ export const addPostActionCreator = (newPostText) => ({type: ADD_POST, newPostTe
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 export const setStatus = (status) => ({type: SET_STATUS, status})
 export const deletePost = (postId) => ({type: DELETE_POST, postId})
-export const savePhotoSuccsess = (photos) => ({type: SAVE_PHOTO_SUCCESS, photos})
+export const savePhotoSuccess = (photos) => ({type: SAVE_PHOTO_SUCCESS, photos})
 
 export const getUserProfile = (userId) => async (dispatch) => {
     let response = await  userAPI.getProfile(userId);
@@ -88,7 +89,27 @@ export const savePhoto = (file) => async (dispatch) => {
     let response = await profileAPI.savePhoto (file);
 
     if (response.data.resultCode === 0) {
-       dispatch(savePhotoSuccsess(response.data.data.photos));
+       dispatch(savePhotoSuccess(response.data.data.photos));
+    }
+}
+
+export const saveProfile = (profile) => async (dispatch, getState) => {
+    const userId = getState().auth.userId;
+    const response = await profileAPI.saveProfile (profile);
+
+    if (response.data.resultCode === 0) {
+       dispatch(getUserProfile(userId));
+    }
+    else {
+
+
+        /*let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error";*/
+       /*dispatch(stopSubmit('edit-profile', {_error: message}));*/
+        dispatch(stopSubmit('edit-profile', {_error:  response.data.messages[0] }));
+        return Promise.reject(response.data.messages[0]);
+
+        /*dispatch(stopSubmit('edit-profile', {_error:  response.data.massages[0] }));
+        return Promise.reject(response.data.massages[0]);*/
     }
 }
 
